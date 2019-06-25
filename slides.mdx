@@ -1,0 +1,168 @@
+export { dark as theme } from '@mdx-deck/themes'
+import { Notes } from 'mdx-deck'
+import { Split } from 'mdx-deck/layouts'
+import { Head, Image } from 'mdx-deck'
+
+<Head>
+  <title>Intro to Hooks</title>
+</Head>
+
+# Quick Intro to Hooks
+
+---
+
+* You can now use state in function components!
+* You can now do side-effecty things (like what you'd normally do in lifcycle methods) in function components
+* The API is "additive" and "opt-in", class components are still supported
+* You can create your own custom hooks
+
+<Notes>use custom hooks to share stateful or side-effecty code between components. No longer have to use HOC's and render props.</Notes>
+
+---
+
+* Live Code `useState()` and `useEffect()`
+
+---
+
+# What hooks are there?
+* useState
+* useEffect
+* useContext
+<hr />
+* useReducer, useCallback, useMemo, useRef, useLayoutEffect
+
+---
+
+# Things I like about hooks
+
+---
+
+* All the benefits of function components over class components, without the same limitations (no state, lifecycles, etc)
+* Less boilerplate code
+* No dealing with the quirks of `this` keyword, binding, etc.
+* Code just feels cleaner. I believe it's more beginner-friendly
+
+---
+<div style={{display: 'flex'}}>
+  <Image src="example-1.png" />
+
+  <Image src="example-2.png" />
+</div>
+
+---
+
+* Ability to separate concerns in lifecycle methods
+* Rather than grouping code by *when* it runs (on mount, on unmount, etc) you can group by *why* it runs
+
+---
+
+<div style={{display: 'flex'}}>
+  <Image style={{width: '100%'}} src="example-3.png" />
+
+  <Image style={{width: '100%'}} src="example-4.png" />
+</div>
+
+---
+
+* hooks for using Context are a lot nicer than current API's. It feels natural. Context belongs here in the hooks world.
+
+---
+
+<div style={{display: 'flex'}}>
+  <Image style={{width: '100%'}} src="example-5.png" />
+
+  <Image style={{width: '100%'}} src="example-6.png" />
+</div>
+
+---
+
+* The ability to create custom / reusable hooks is badass!
+* Cleaner way to share stateful or side-effect logic between components. No longer have HOC's or render props
+
+<Notes>render props or HOC add more stuff to our component tree, and they couple stateful logic with UI code, whereas hooks allow us to keep them separated</Notes>
+
+---
+
+`useMousePressed` Demo
+
+---
+
+# Tricky / Weird Things
+
+---
+
+<p>The second argument to `useEffect()`: the "conditions array"</p>
+<p>Think of it as "thepieces of data that this callback depends on"</p>
+
+<Image src="example-7.png" />
+
+---
+
+* I believe that using the "conditions array" is confusing and prone to bugs
+
+---
+
+* Basically, err on the side of not passing in anything
+* Perf concerns may be imaginary, especially because react defers useEffect until after paint (see useLayoutEffect)
+* When it *does* become a problem, there are other solutions
+* *EXAMPLE*
+
+<Notes>UseLayoutEffect gets called before paint. componentDidMount also got called before paint.</Notes>
+
+---
+
+<p>No conditions array given:</p>
+<p>Timer gets setup & torn down on every render</p>
+
+<Image src="example-8.png" />
+
+---
+
+<p>The conditions array is []</p>
+<p>Timer gets setup & torn down _only_ on mount</p>
+<p>But it reverences a stale value for count</p>
+
+<Image src="example-9.png" />
+
+---
+
+<p>The conditions array is []</p>
+<p>Timer gets setup & torn down _only_ on mount</p>
+<p>We use the functional update form of setState, which insures a fresh value for `prevCount`</p>
+
+<Image src="example-10.png" />
+
+---
+
+<a href="https://reactjs.org/docs/hooks-faq.html#what-can-i-do-if-my-effect-dependencies-change-too-often">
+https://reactjs.org/docs/hooks-faq.html#what-can-i-do-if-my-effect-dependencies-change-too-often
+</a>
+
+---
+
+* It might be tempting to pass `[]` in everywhere there are no props or state referenced in the effect -- it's easier to mentally map that to a componentDidMount
+* You have to know what you're doing, and you're signing up everyone who comes after you to maintain the conditions array
+* “I know this could be ‘faster’” vs “but the perf for this makes no difference and fixing the imaginary perf problem will cause pain for me and future maintainers”
+
+---
+
+* I don't understand the performance implecations of certain things
+* I still find myself thinking about components in terms of "lifecycles" rather than "effects"
+
+<Notes>
+I don't love the API for useEffect(), specifically the second argument. it's not very self-evident. you need to pass an empty array as the second argument when you want it to run only once (super common), but this seems easy to forget and easy to overlook when reading code.
+</Notes>
+
+---
+# General Concerns
+* Can't define an async useEffect (there is an easy work around)
+* Divisive and controversial in the React community
+* Testing code that uses Hooks might have some concerns
+
+<Notes>
+You can't define an async useEffect. there is an easy workaround -- just define the async function inline and then call it immediately -- but I'm not sure how I feel about it
+
+It has been divisive and controversial in the React community. certain library maintainers have been a little too gung-ho with converting their libraries to use Hooks, and not everyone has the time to learn a new approach like this
+
+Apparently, testing code that uses Hooks is weird. it seems like there are ways to work through the problems (react-testing-library, etc.) but overall it requires a pretty big shift in the way of thinking about writing and testing components.
+</Notes>

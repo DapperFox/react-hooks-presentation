@@ -1,0 +1,14 @@
+{
+  "name": "react-hooks-slides",
+  "version": "1.0.0",
+  "description": "slides for the react hooks presentation",
+  "main": "index.js",
+  "scripts": {
+    "start": "mdx-deck slides.mdx"
+  },
+  "author": "Blake Bishop",
+  "license": "ISC",
+  "devDependencies": {
+    "mdx-deck": "^2.4.0"
+  }
+}
