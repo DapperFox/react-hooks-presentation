@@ -14,7 +14,7 @@ import { Head, Image } from 'mdx-deck'
 <div style={{padding: '15%'}}>
   <ul>
     <li>You can now use state in function components!</li>
-    <li>You can now do side-effecty things (like what you'd normally do in lifcycle methods) in function components</li>
+    <li>You can now do side-effecty things (like what you'd normally do in lifecycle methods) in function components</li>
     <li>The API is "additive" and "opt-in", class components are still supported</li>
     <li>You can create your own custom hooks</li>
   </ul>
@@ -29,11 +29,11 @@ import { Head, Image } from 'mdx-deck'
 ---
 
 # What hooks are there?
-* useState
-* useEffect
-* useContext
+* `useState`
+* `useEffect`
+* `useContext`
 <hr />
-* useReducer, useCallback, useMemo, useRef, useLayoutEffect
+* `useReducer`, `useCallback`, `useMemo`, `useRef`, `useLayoutEffect`
 
 ---
 
@@ -64,7 +64,7 @@ import { Head, Image } from 'mdx-deck'
 <div style={{padding: '15%'}}>
   <ul>
     <li>Ability to separate concerns in lifecycle methods</li>
-    <li>Rather than grouping code by *when* it runs (on mount, on unmount, etc) you can group by *why* it runs</li>
+    <li>Rather than grouping code by <b>when</b> it runs (on mount, on unmount, etc) you can group by <b>why</b> it runs</li>
   </ul>
 </div>
 
@@ -133,7 +133,7 @@ import { Head, Image } from 'mdx-deck'
     <li>Use the conditions array when you actually need it, not just when you have imaginary perf worries</li>
     <li>You probably don't need to be that worried about perf. React defers running useEffect until after the browser has painted</li>
     <li>But it's good to know ways to solve perf problems the right way with the conditions array</li>
-    <li>*EXAMPLE*</li>
+    <li><b>EXAMPLE</b></li>
   </ul>
 </div>
 
