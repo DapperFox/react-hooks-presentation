@@ -38,9 +38,10 @@ import { Head, Image } from 'mdx-deck'
 ---
 
 * All the benefits of function components over class components, without the same limitations (no state, lifecycles, etc)
-* Less boilerplate code
-* No dealing with the quirks of `this` keyword, binding, etc.
-* Code just feels cleaner. I believe it's more beginner-friendly
+  * Less boilerplate code
+  * No dealing with the quirks of `this` keyword, binding, etc.
+  * Code just feels cleaner
+  * I think it's more beginner-friendly
 
 ---
 <div style={{display: 'flex'}}>
@@ -102,9 +103,9 @@ import { Head, Image } from 'mdx-deck'
 
 ---
 
-* Basically, err on the side of not passing in anything
-* Perf concerns may be imaginary, especially because react defers useEffect until after paint (see useLayoutEffect)
-* When it *does* become a problem, there are other solutions
+* Use the conditions array when you actually need it, not just when you have imaginary perf worries
+* You probably don't need to be that worried about perf. React defers running useEffect until after the browser has painted
+* But it's good to know ways to solve perf problems the right way with the conditions array
 * *EXAMPLE*
 
 <Notes>UseLayoutEffect gets called before paint. componentDidMount also got called before paint.</Notes>
