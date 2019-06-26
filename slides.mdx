@@ -1,4 +1,4 @@
-export { dark as theme } from '@mdx-deck/themes'
+export { kDark as theme } from './theme'
 import { Notes } from 'mdx-deck'
 import { Split } from 'mdx-deck/layouts'
 import { Head, Image } from 'mdx-deck'
@@ -44,10 +44,12 @@ import { Head, Image } from 'mdx-deck'
 <div style={{padding: '15%'}}>
   <ul>
     <li>All the benefits of function components over class components, without the same limitations (no state, lifecycles, etc)</li>
-    <li>Less boilerplate code</li>
-    <li>No dealing with the quirks of `this` keyword, binding, etc.</li>
-    <li>Code just feels cleaner</li>
-    <li>I think it's more beginner-friendly</li>
+    <ul>
+      <li>Less boilerplate code</li>
+      <li>No dealing with the quirks of `this` keyword, binding, etc.</li>
+      <li>Code just feels cleaner</li>
+      <li>I think it's more beginner-friendly</li>
+    </ul>
   </ul>
 </div>
 
@@ -80,7 +82,7 @@ import { Head, Image } from 'mdx-deck'
 
 <div style={{padding: '15%'}}>
   <ul>
-    <li>Hooks for using Context are a lot nicer than current API's. It feels natural. Context belongs here in the hooks world.</li>
+    <li>Hooks for using Context are a lot nicer than current APIs. It feels natural. Context belongs here in the hooks world.</li>
   </ul>
 </div>
 
@@ -97,7 +99,7 @@ import { Head, Image } from 'mdx-deck'
 <div style={{padding: '15%'}}>
   <ul>
     <li>The ability to create custom / reusable hooks is badass!</li>
-    <li>Cleaner way to share stateful or side-effect logic between components. No longer have HOC's or render props</li>
+    <li>Cleaner way to share stateful or side-effecty logic between components. No longer rely on just HOCs or render props</li>
   </ul>
 </div>
 
@@ -114,7 +116,7 @@ import { Head, Image } from 'mdx-deck'
 ---
 
 <p>The second argument to `useEffect()`: the "conditions array"</p>
-<p>Think of it as "thepieces of data that this callback depends on"</p>
+<p>Think of it as "the pieces of data that this callback depends on"</p>
 
 <img style={{width: '600px'}} src="images/example-7.png" />
 
@@ -122,7 +124,7 @@ import { Head, Image } from 'mdx-deck'
 
 <div style={{padding: '15%'}}>
   <ul>
-    <li>I believe that using the "conditions array" is confusing and prone to bugs</li>
+    <li>I think using the "conditions array" can be confusing and prone to bugs</li>
   </ul>
 </div>
 
@@ -132,8 +134,8 @@ import { Head, Image } from 'mdx-deck'
   <ul>
     <li>Use the conditions array when you actually need it, not just when you have imaginary perf worries</li>
     <li>You probably don't need to be that worried about perf. React defers running useEffect until after the browser has painted</li>
+    <li>“I know this could be ‘faster’” vs “fixing the imaginary perf problem will cause pain for me and future maintainers”</li>
     <li>But it's good to know ways to solve perf problems the right way with the conditions array</li>
-    <li><b>EXAMPLE</b></li>
   </ul>
 </div>
 
@@ -150,7 +152,7 @@ import { Head, Image } from 'mdx-deck'
 
 <p>The conditions array is `[]`</p>
 <p style={{color: 'green'}}>Timer gets setup & torn down _only_ on mount 😄</p>
-<p style={{color: 'red'}}>But it reverences a stale value for count 😢</p>
+<p style={{color: 'red'}}>But it references a stale value for count 😢</p>
 
 <img style={{width: '600px'}} src="images/example-9.png" />
 
@@ -167,16 +169,6 @@ import { Head, Image } from 'mdx-deck'
 <a href="https://reactjs.org/docs/hooks-faq.html#what-can-i-do-if-my-effect-dependencies-change-too-often">
 https://reactjs.org/docs/hooks-faq.html#what-can-i-do-if-my-effect-dependencies-change-too-often
 </a>
-
----
-
-<div style={{padding: '15%'}}>
-  <ul>
-    <li>It might be tempting to pass `[]` in everywhere there are no props or state referenced in the effect -- it's easier to mentally map that to a componentDidMount</li>
-    <li>You have to know what you're doing, and you're signing up everyone who comes after you to maintain the conditions array</li>
-    <li>“I know this could be ‘faster’” vs “but the perf for this makes no difference and fixing the imaginary perf problem will cause pain for me and future maintainers”</li>
-  </ul>
-</div>
 
 ---
 
